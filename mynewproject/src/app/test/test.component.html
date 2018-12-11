@@ -1,0 +1,9 @@
+<p>
+  To display  message from App component to Test Component:
+  <ul>
+    <li>In AppComponent.ts create a new property public name="Namrata"</li>
+    <li>Then in App.Component.html, include it in the opening tag of the selecter <app-test [parentData] = "name"></app-test> bind the name property</li>
+    <li>Now send the data to the TestComponent.ts. Declare the same property that the App Component is sending using Input decorator, @Input() public = parentData. Also import it from @angular/Core - import {Input} from '@angular/core'</li>
+    <li>Now bind it into the template, <h2>{{"Hello " + parentData}}</h2></li>
+  </ul>
+</p>

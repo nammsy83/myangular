@@ -1,0 +1,144 @@
+import { Component, OnInit, Input} from '@angular/core';
+
+@Component({
+  selector: 'app-test',
+  /** Interpolation, Property Binding, Class Binding, Event Binding */
+  template: `
+  <body>
+  <h1>Interpolation</h1>
+  <div>Welcome {{name}}</div>
+  <h2>Concatenation - {{2+2}}</h2>
+  <h2>To uppercase - {{"Welcome " + name.toUpperCase()}}</h2>
+  <h2>Check length - {{"This is the length " + name.length }}</h2>
+  <h2>Greet user - {{greetUser()}}</h2>
+
+  <h1>Property Binding</h1>
+  <p>Console value</p>
+  <input type="text" [value]=value [id]=myId>
+
+  <h1>Class Binding</h1>
+  <h3 class="text-success">This is a success message</h3>
+  <h3 [class]=successMsg>This is called from public function</h3>
+  <h3 [class.text-danger] = "hasError">This is conditional</h3>
+  <h3 [ngClass]="multipleClasses">This is using conditional classes from object</h3>
+
+  <h1>Style Binding</h1>
+  <h3 [style.color]="'orange'">This is style binding</h3>
+  <h3 [ngStyle]="titleStyles">this is style binding is coming from Object</h3>
+
+  <h1>Event Binding</h1>
+  <button (click) = onClick()>Greet</button>  {{greeting}}<br><br>
+  <button (click) = "greetinginline='This is inline greeting'">Greet again</button>
+
+  {{greetinginline}}
+
+
+  <h1>Template reference variable</h1>
+  <p>When there is user interaction we might want some data to flow from the view to the class to perform an operation. For rg. we may require the value from the input field to perform an operation.</p>
+  <input #myInput type="text" class="input">
+  <button (click)="logMessage(myInput)">Log</button>
+
+  <h1>Two  way binding</h1>
+  <p>Dont forget to add FormsModule in app.module.ts</p>
+  <input  type="text" [(ngModel)]="name">
+  {{name}}
+
+  <h1>Structural Directives</h1>
+  <p>Common structural directives</p>
+  <ul>
+    <li>ngIf</li>
+    <li>ngSwitch</li>
+    <li>ngFor</li>
+  </ul>
+   <h2 *ngIf="displayName">CodeEvolution</h2>
+  <p>This is how If and else works inline</p>
+  <h2 *ngIf="printName; else elseBlock">
+    Code evolution
+  </h2>
+
+  <ng-template #elseBlock>
+      <h2>
+        Name is hidden
+      </h2>
+  </ng-template>
+
+  <p>This is how If and else works in a separate tag</p>
+
+  <div *ngIf="checkName; then thenBlock; else elseBlock2"></div>
+  <ng-template #thenBlock>
+      <h2>If block is displayed</h2>
+  </ng-template>
+  <ng-template #elseBlock2>
+      <h2>Else block is displayed</h2>
+  </ng-template>
+
+  <h1>ngSwitch Directive</h1>
+  <div [ngSwitch]="color">
+      <div *ngSwitchCase="'red'">You picked red color</div>
+      <div *ngSwitchCase="'blue'">You picked blue color</div>
+      <div *ngSwitchCase="'green'">You picked green color</div>
+      <div *ngSwitchDefault>Pick again</div>
+
+  </div>
+  <h1>ngForDirective</h1>
+  <p></p>
+  <div *ngFor="let color of colors; odd as i">
+        <h2>{{color}} {{i}}</h2>
+  </div>
+
+  <h1>Component Interaction</h1>
+  <p>To display  message from App component to Test Component:
+  Refer test.component.html
+  </p>
+  <h2>{{"Hello " + parentData}}</h2>
+  </body>
+  `,
+  styles: [`
+        body{font-family: 'Arial', sans-serif; text-align:left;}
+        h1{color: Red;}
+        .text-success{color:green;}
+        .text-danger{color: red;}
+        .text-special{font-style: italic;}
+        p{font-size: 20px; max-width: 400px;}
+  `]
+})
+export class TestComponent implements OnInit {
+  public name = "Subhedar";
+  public value = "Namrata";
+  public myId = "test";
+  public successMsg = 'text-success';
+  public hasError = false;
+  public isSpecial = true;
+  public multipleClasses = {
+    "text-success": !this.hasError,
+    "text-danger": this.hasError,
+    "text-special": this.isSpecial,
+  }
+  public titleStyles ={
+    "color": 'orange',
+    "fontStyle": 'italic',
+  }
+  public greeting = "";
+  public displayName = true;
+  public printName = false;
+  public checkName = false;
+  public color = "orange";
+  public colors = ['red','blue','orange','yellow'];
+  @Input() public parentData;
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  greetUser(){
+    return "Hello, " + this.name;
+  }
+  onClick(){
+    console.log('Welcome to codeEvolution');
+    this.greeting = "Welcome to code evolition";
+  }
+  logMessage(value){
+    console.log(value)
+  }
+
+}
