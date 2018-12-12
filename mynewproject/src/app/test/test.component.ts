@@ -1,4 +1,5 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+
 
 @Component({
   selector: 'app-test',
@@ -90,7 +91,25 @@ import { Component, OnInit, Input} from '@angular/core';
   <p>To display  message from App component to Test Component:
   Refer test.component.html
   </p>
-  <h2>{{"Hello " + parentData}}</h2>
+  <h2>{{"Hello " + myname}}</h2>
+  <p>To send data from Childcomponent to parent component - </p>
+  <button (click)="fireEvent()">Send message</button>
+
+  <h1>Pipes</h1>
+  <p>Pipes allow us to transform data before displaying them in the view</p>
+  <h2>{{name | lowercase}}</h2>
+  <h2>{{name | uppercase}}</h2>
+  <h2>{{message | titlecase}}</h2>
+  <h2>{{message | slice:3:5}}</h2>
+  <h2>{{person | json}}</h2>
+  <h1>Services</h1>
+  <p> A class with a specific purpose</p>
+  <ul>
+      <li>Share data</li>
+      <li>Implement Application Logic</li>
+      <li>External Interaction</li>
+      <li>Naming convention eg. Employee.service.ts</li>
+  </ul>
   </body>
   `,
   styles: [`
@@ -124,7 +143,13 @@ export class TestComponent implements OnInit {
   public checkName = false;
   public color = "orange";
   public colors = ['red','blue','orange','yellow'];
-  @Input() public parentData;
+  public message = 'welcome to codevolution';
+  public person = {
+    "firstName": 'Namrata',
+    "LastName": 'Subhedar'
+  }
+  @Input('parentData') public myname;
+  @Output() public childEvent = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
@@ -136,6 +161,10 @@ export class TestComponent implements OnInit {
   onClick(){
     console.log('Welcome to codeEvolution');
     this.greeting = "Welcome to code evolition";
+  }
+  fireEvent(){
+    this.childEvent.emit('Hey CodeEvolution');
+    console.log('Hey codevolution');
   }
   logMessage(value){
     console.log(value)

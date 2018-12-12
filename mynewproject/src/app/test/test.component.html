@@ -1,9 +1,18 @@
+<h1>Component Interaction</h1>
 <p>
   To display  message from App component to Test Component:
   <ul>
     <li>In AppComponent.ts create a new property public name="Namrata"</li>
     <li>Then in App.Component.html, include it in the opening tag of the selecter <app-test [parentData] = "name"></app-test> bind the name property</li>
-    <li>Now send the data to the TestComponent.ts. Declare the same property that the App Component is sending using Input decorator, @Input() public = parentData. Also import it from @angular/Core - import {Input} from '@angular/core'</li>
+    <li>Now send the data to the TestComponent.ts. Declare the same property that the App Component is sending using Input decorator, @Input() public parentData. You can even create an Alias for eg; @Input('parentData') public name; Also import it from @angular/Core - import {Input} from '@angular/core'</li>
     <li>Now bind it into the template, <h2>{{"Hello " + parentData}}</h2></li>
   </ul>
 </p>
+<p>To display message from Test Component to App Component. In Child component you have parent component selector but in parent component you do not have child component selecter so you have to send the message using an event.</p>
+<ul>
+  <li>In test.component.ts create a property -  @Output() public childEvent = new EventEmitter(); Import the EventEmitter & Output class import{Output, EventEmitter} from '@angular/core';</li>
+  <li>On click lets call a fireEvent method and define it in export class</li>
+  <li>Then go to app.component.html and bind custom event and assign it to the property called message the event variable - (childEvent)="message&event". The $event variable is going to refer "Hey CodeEvolution"</li>
+  <li>Declare the property message - public message = ""</li>
+  <li>Display it in the template {{message}}</li>
+</ul>
