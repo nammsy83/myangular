@@ -110,6 +110,20 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
       <li>External Interaction</li>
       <li>Naming convention eg. Employee.service.ts</li>
   </ul>
+  <p>How to use a service</p>
+  <ul>
+    <li>Define the EmployeeService class</li>
+    <li>Rejister with injector</li>
+    <li>Declare a dependency in EmployeeList and EmployeeDetail</li>
+  </ul>
+  <ul>
+      <li>To generate a basic Service template we use Angular CLI</li>
+      <li>Run command n g s employee</li>
+      <li>Employee.service.ts file gets generated</li>
+      <li>The service is responsible to provide the Employee data</li>
+      <li>Create a new method getEmployees(){return[{"id": 1, "name": "namrata", "age": 30}];}</li>
+      <li>Initialize empty array in the list component and empty aray in the detail component i.e public employees = [];</li>
+  </ul>
   </body>
   `,
   styles: [`
