@@ -25,3 +25,35 @@
     <li>Create a new method getEmployees(){return[{"id": 1, "name": "namrata", "age": 30}];}</li>
     <li>Initialize empty array in the list component and empty aray in the detail component i.e public employees = [];</li>
 </ul>
+<p>How to use a service</p>
+  <ul>
+    <li>Define the EmployeeService class</li>
+    <li>Rejister with injector</li>
+    <li>Declare a dependency in EmployeeList and EmployeeDetail</li>
+  </ul>
+  <h1>HTTP and Observables</h1>
+  <p>Currently we are serving the data that is hardocded in the employee service. But in real world application we need to fetch the data from a web server or web api. Lets understand the mechanism of HTTP call and the observable that is returned by the HTTP call. So we have an application that runs on the browser and we have 2 components, em list and emp detail. Both these components make use of EmployeeService for thier data. But we want the data to be fetched from the server and for that we make a HTTP get request. The HTTP get request will hit a web server which will fetch a data from a DB and send it back as a http response. Response we get back from an HTTP call is an observable. Now the employeeService needs to cast the observable into an array of employees and return to the emp list and emp detail. We provide the data only to the components that have subscribed to the EmployeeService. After this it its upto the components what to do with the data. So the HTTP mechanism is just 2 steps, send the http request and receive and process HTTP response from the server.</p>
+  <h2>Observables</h2>
+  <ul>
+  <li>A sequence of items that arrive asynchronously over time.</li>
+  <li>HTTP call is a single item and not a sequence of items</li>
+  <li>Single item is HTTP response that arrives asynchronously.</li>
+  </ul>
+  <h2>HTTP, Observables and RxJS</h2>
+  <ul>
+      <li>Make HTTP GET request from the EmployeeService</li>
+      <li>We receive an observable and cast it into the array of employees.</li>
+      <li>We are going to subscribe to the observable from the the Emplist and EmpDetail component</li>
+      <li>Assign the employee array to a local variable</li>
+  </ul>
+  <p>RxJS is an external library that enables us to work with observables in Angular applications. </p>
+
+  <h1>Fetch data using HTTP</h1>
+  <ul>
+      <li>First step is to make a get request from the EmployeeService</li>
+      <li>The HttpClientModule provides a simplified API for HTTP functionality for use with Angular applications</li>
+      <li>In app module import HttpClientModule from angular/common/http and pass it in the imports array</li>
+      <li>Then go to employee.service.ts and add private http: HttpClient in the constructor and then import it at the top import {HttpClient} from  angular/common/http</li>
+      <li>Since we dont have a web api to fetch we will create a json file in assets/data folder</li>
+      <li>In employee service create a property private _url: string = "/assets/data/employees.json</li>
+  </ul>

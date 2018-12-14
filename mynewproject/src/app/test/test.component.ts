@@ -110,12 +110,6 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
       <li>External Interaction</li>
       <li>Naming convention eg. Employee.service.ts</li>
   </ul>
-  <p>How to use a service</p>
-  <ul>
-    <li>Define the EmployeeService class</li>
-    <li>Rejister with injector</li>
-    <li>Declare a dependency in EmployeeList and EmployeeDetail</li>
-  </ul>
   
   </body>
   `,
